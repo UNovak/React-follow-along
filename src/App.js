@@ -38,34 +38,30 @@ const list2 = [
   },
 ];
 
-function App() {
-  return (
-    <div>
-      <h1>My Hacker Stories</h1>
-      <label htmlFor="search">Search: </label>
-      <input id="search" type="text" />
-      <hr />
+const App = () => (
+  <div>
+    <h1>My Hacker Stories</h1>
+    <label htmlFor="search">Search: </label>
+    <input id="search" type="text" />
+    <hr />
 
-      <List lst={list} />
-      <List lst={list2} />
+    <List list />
+    <List list2 />
+  </div>
+);
+
+const List = () => {
+  return list.map((item) => (
+    <div key={item.objectID}>
+      <span>
+        <a href={item.url}>{item.title}</a>
+      </span>
+      <span>{item.author}</span>
+      <span>{item.num_comments}</span>
+      <span>{item.points}</span>
     </div>
-  );
-}
-
-function List({ lst }) {
-  return lst.map(function (item) {
-    return (
-      <div key={item.objectID}>
-        <span>
-          <a href={item.url}>{item.title}</a>
-        </span>
-        <span>{item.author}</span>
-        <span>{item.num_comments}</span>
-        <span>{item.points}</span>
-      </div>
-    );
-  });
-}
+  ));
+};
 
 if (module.hot) {
   module.hot.accept();
