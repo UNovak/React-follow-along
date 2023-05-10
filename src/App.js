@@ -1,29 +1,70 @@
 import React from "react";
 
-function getTitle(title) {
-  return title;
-}
+const list = [
+  {
+    title: "React",
+    url: "https://reactjs.org/",
+    author: "Jordan Walke",
+    num_comments: 3,
+    points: 4,
+    objectID: 0,
+  },
+  {
+    title: "Redux",
+    url: "https://redux.js.org/",
+    author: "Dan Abramov, Andrew Clark",
+    num_comments: 2,
+    points: 5,
+    objectID: 1,
+  },
+];
 
-const random_nums = [];
-random_nums.length = 10;
-
-for (var i = 0; i < 11; i++) {
-  random_nums[i] = Math.floor(Math.random() * random_nums.length);
-}
+const list2 = [
+  {
+    title: "React1",
+    url: "https://reactjs.org/",
+    author: "Jordan Walke",
+    num_comments: 3,
+    points: 4,
+    objectID: 0,
+  },
+  {
+    title: "Redux1",
+    url: "https://redux.js.org/",
+    author: "Dan Abramov, Andrew Clark",
+    num_comments: 2,
+    points: 5,
+    objectID: 1,
+  },
+];
 
 function App() {
   return (
     <div>
-      <h1>Hello {getTitle("React")}</h1>
-      <div>
-        {random_nums.map((n) => (
-          <p>{n}</p>
-        ))}
-      </div>
+      <h1>My Hacker Stories</h1>
       <label htmlFor="search">Search: </label>
       <input id="search" type="text" />
+      <hr />
+
+      <List lst={list} />
+      <List lst={list2} />
     </div>
   );
+}
+
+function List({ lst }) {
+  return lst.map(function (item) {
+    return (
+      <div key={item.objectID}>
+        <span>
+          <a href={item.url}>{item.title}</a>
+        </span>
+        <span>{item.author}</span>
+        <span>{item.num_comments}</span>
+        <span>{item.points}</span>
+      </div>
+    );
+  });
 }
 
 if (module.hot) {
