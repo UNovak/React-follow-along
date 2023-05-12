@@ -51,7 +51,19 @@ const Search = ({ search, onSearch }) => (
 );
 
 const List = ({ list }) =>
-  list.map((item) => <Item key={item.objectID} item={item} />);
+  
+  list.map(item => (
+    <Item
+      key={item.objectId}
+      url={item.url}
+      title={item.title}
+      author={item.author}
+      num_comments={item.num_comments}
+      points={item.points}
+    />
+  ))
+  
+// list.map(({objectID, ...item}) => <Item key={objectID} {...item} />)
 
 // const Item = ({ item }) => (
 //   <div>
@@ -65,7 +77,7 @@ const List = ({ list }) =>
 // );
 // gets replaced with the code bellow after restructuring the item object
 
-const Item = ({ item: { url, title, author, num_comments, points } }) => (
+const Item = ({ url, title, author, num_comments, points }) => (
   <div>
     <span>
       <a href={url}>{title}</a>
